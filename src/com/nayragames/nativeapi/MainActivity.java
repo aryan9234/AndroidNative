@@ -8,6 +8,11 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import com.nayragames.androidnative.R;
 
+/**
+ * @author Abhishek Aryan
+ * 
+ */
+
 public class MainActivity extends Activity {
 
 	private static final String TAG=MainActivity.class.getSimpleName();
@@ -35,7 +40,6 @@ public class MainActivity extends Activity {
 		nativeAPI.xyz();
 
 	}
-
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
