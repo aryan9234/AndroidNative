@@ -1,28 +1,41 @@
 package com.nayragames.nativeapi;
 
-import com.example.androidnative.R;
-
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import com.nayragames.androidnative.R;
 
 public class MainActivity extends Activity {
 
-	static {
-	     System.loadLibrary("myjni");
-	}
+	private static final String TAG=MainActivity.class.getSimpleName();
+	private TextView apiName,apiVersion,author;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
-		System.out.println("ADD"+add(5,1));
-	}
-	
-	public native int add( int v1, int v2 );
 
-	public native String hello();
+		Log.i(TAG,"Version"+NativeAPI.ApiVersion());
+		Log.i(TAG,"API Name"+NativeAPI.ApiName());
+		Log.i(TAG,"Author"+NativeAPI.authorName());
+
+		apiName = (TextView) findViewById(R.id.api);
+		apiName.setText(apiName.getText()+NativeAPI.ApiName());
+
+		apiVersion=(TextView) findViewById(R.id.version);
+		apiVersion.setText(apiVersion.getText()+String.valueOf(NativeAPI.ApiVersion()));
+
+		author = (TextView) findViewById(R.id.author);
+		author.setText(author.getText()+NativeAPI.authorName());
+
+		NativeAPI nativeAPI=new NativeAPI();
+		nativeAPI.xyz();
+
+	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
